@@ -1,6 +1,6 @@
 # This is used when ro.vendor.fingerprint.supported == 1
 
-service vendor.fps_hal.wt8937 /odm/bin/hw/android.hardware.biometrics.fingerprint@2.1-service.xiaomi_wt8937
+service vendor.fps_hal.wt8937 /odm/bin/hw/android.hardware.biometrics.fingerprint-service.xiaomi_wt8937
     # "class hal" causes a race condition on some devices due to files created
     # in /data. As a workaround, postpone startup until later in boot once
     # /data is mounted.
