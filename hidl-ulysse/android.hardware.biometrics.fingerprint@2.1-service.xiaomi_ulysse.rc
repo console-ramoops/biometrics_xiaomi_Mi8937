@@ -1,0 +1,26 @@
+# This is used when ro.vendor.fingerprint.supported == 2 (only possible on ugg)
+
+service vendor.fps_hal.ulysse /odm/bin/hw/android.hardware.biometrics.fingerprint@2.1-service.xiaomi_ulysse
+    # "class hal" causes a race condition on some devices due to files created
+    # in /data. As a workaround, postpone startup until later in boot once
+    # /data is mounted.
+    class late_start
+    user system
+    group system input uhid
+    disabled
+
+on property:ro.vendor.fingerprint.supported=2
+    setprop ro.hardware.fingerprint ugg_fpc
+    setprop ro.hardware.gf_fingerprint ugg
+    enable vendor.fps_hal.ulysse
+
+on property:ro.vendor.fingerprint.supported=0
+    stop vendor.fps_hal.ulysse
+
+on property:ro.vendor.fingerprint.state=0 && property:ro.vendor.fingerprint.supported=2
+    stop vendor.fps_hal.ulysse
+
+# FIXME
+#on property:ro.vendor.fingerprint.state=1 && property:ro.vendor.fingerprint.supported=2
+on property:ro.vendor.fingerprint.supported=2
+    setprop ro.boot.product.hardware.sku fingerprint
