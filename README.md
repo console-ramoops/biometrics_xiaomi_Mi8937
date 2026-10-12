@@ -65,3 +65,8 @@ BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/biometrics/sepolicy
 
 - Target FCM Level: 7 (Android 13 / SDK 33).
 - VINTF declaration: `<version>2</version>`, satisfying SDK 33 vendor FCM constraints while supporting runtime AIDL V4 contracts across Android 14, 15, and 16.
+
+---
+
+> /!\ **Disclaimer**: Made with AI. Please test thoroughly on target hardware before production use.
+
